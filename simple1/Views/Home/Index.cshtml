@@ -1,0 +1,32 @@
+@model IEnumerable<SimpleSearchSite.Data.Item>
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+var q = (string)ViewData["Query"]!;
+}
+<div class="row">
+<div class="col-md-8 offset-md-2">
+<form method="get" action="/Home/Index" class="mb-3">
+<div class="input-group">
+<input type="text" name="q" class="form-control" placeholder="Rechercher..." value="@q" />
+<button class="btn btn-primary" type="submit">Rechercher</button>
+</div>
+</form>
+
+
+<h5>Résultats pour @Html.Raw((@q)) (@Model.Count())</h5>
+<div class="list-group">
+@foreach(var item in Model)
+{
+<div class="list-group-item">
+<h6>@item.Title</h6>
+<p class="mb-0">@item.Description</p>
+</div>
+}
+</div>
+</div>
+</div>
+
+
+<script>
+    var searchTerm = "@q";
+</script>
